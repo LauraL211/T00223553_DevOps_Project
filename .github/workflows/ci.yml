@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Java 17
         uses: actions/setup-java@v4
@@ -22,6 +24,15 @@ jobs:
 
       - name: Build & test (Maven Wrapper)
         run: ./mvnw -B clean test
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v5
+        with:
+          args: >
+            -Dsonar.projectKey=LauraL211_T00223553_DevOps_Project
+            -Dsonar.organization=laural211
+        env:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Upload test reports
         if: always()
