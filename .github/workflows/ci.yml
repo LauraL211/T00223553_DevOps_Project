@@ -41,7 +41,8 @@ jobs:
             -Dsonar.projectKey=LauraL211_T00223553_DevOps_Project
             -Dsonar.organization=laural211
             -Dsonar.java.binaries=target/classes
-            -Dsonar.coverage.jacoco.xmlReportPaths=**/target/site/jacoco/jacoco.xml
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+            -Dsonar.coverage.exclusions=**/*Application.java,**/*RuntimeHints.java
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
